@@ -46,6 +46,33 @@ services:
           sample:
               aliases:
                   - division-service
+  greater_than-service:
+        build: ./greater_than
+        hostname: greater_than-service
+        ports:
+            - 5055:5055
+        networks:
+            sample:
+                aliases:
+                    - greater_than-service          
+  less_than-service:
+        build: ./less_than
+        hostname: less_than-service
+        ports:
+            - 5056:5056
+        networks:
+            sample:
+                aliases:
+                    - less_than-service 
+  equal-service:
+        build: ./equal
+        hostname: equal-service
+        ports:
+            - 5057:5057
+        networks:
+            sample:
+                aliases:
+                    - equal-service
   # Add more services below
 networks:
   sample:
