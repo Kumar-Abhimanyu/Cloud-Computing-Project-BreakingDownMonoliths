@@ -1,1 +1,3 @@
-# Follow Task-0 subtask-0 to complete this file. Remove this comment if you think it is causing build issues.
+flask
+requests
+flask-restful
