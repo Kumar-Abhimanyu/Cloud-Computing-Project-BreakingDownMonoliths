@@ -39,6 +39,32 @@ def divide(n1, n2):
     print(response)
     return response.json()['result']
 
+def greater_than(n1, n2):
+    URL = 'http://greater_than-service:'
+    port = 5055
+    add_url = URL + str(port) + '/' + str(n1) + '/' + str(n2)
+    response = requests.get(add_url)
+    print(response)
+    return response.json()['result']
+    # return n1>n2
+
+def less_than(n1, n2):
+    URL = 'http://less_than-service:'
+    port = 5056
+    add_url = URL + str(port) + '/' + str(n1) + '/' + str(n2)
+    response = requests.get(add_url)
+    print(response)
+    return response.json()['result']
+    # return n1<n2
+
+def equal(n1, n2):
+    URL = 'http://equal-service:'
+    port = 5057
+    add_url = URL + str(port) + '/' + str(n1) + '/' + str(n2)
+    response = requests.get(add_url)
+    print(response)
+    return response.json()['result']
+
 @app.route('/', methods=['POST', 'GET'])
 def index():
     try:
@@ -53,7 +79,16 @@ def index():
         elif operation == 'multiply':
             result = multiply(number_1, number_2)
         elif operation == 'divide':
-            result = divide(number_1, number_2)
+            if number_2==0:
+                        result = 'Zero Division Error'
+            else:
+                        result = divide(number_1, number_2)
+        elif operation == 'greater_than':
+            result = greater_than(number_1, number_2)
+        elif operation == 'less_than':
+            result = less_than(number_1, number_2)
+        elif operation == 'equal':
+            result = equal(number_1, number_2)
 
         flash(f'The result of operation {operation} on {number_1} and {number_2} is {result}')
 
